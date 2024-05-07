@@ -1,0 +1,17 @@
+env/
+keys/
+*.[csv|zip|gpkg|json|jsonl]
+/Users/avani/Documents/cloud_comp/final_project/census_blocks/preparing_blockgroup/prepared/blockgroup/blockgroups.jsonl
+/Users/avani/Documents/cloud_comp/final_project/census_blocks/preparing_blockgroup/raw
+.jsonl
+.json
+"$HOME/Documents/cloud_comp/final_project/census_blocks/preparing_blockgroup/prepared/blockgroup/blockgroups.jsonl"
+tl_2023_42_tract/output.jsonl
+tl_2023_42_tract/output.csv
+tl_2023_42_tract.zip
+/tl_2023_06_bg
+*.zip
+/tl_2023_42_tract
+*.csv
+*.jsonl
+/census_blocks
