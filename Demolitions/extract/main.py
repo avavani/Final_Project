@@ -7,12 +7,9 @@ load_dotenv()
 
 @functions_framework.http
 def extract_demo_data(request):
-    # Constants
     URL = 'https://phl.carto.com/api/v2/sql?q=SELECT+*,+ST_Y(the_geom)+AS+lat,+ST_X(the_geom)+AS+lng+FROM+demolitions&filename=demolitions&format=csv&skipfields=cartodb_id'
     BUCKET_NAME = os.getenv('DATA_LAKE_BUCKET')
     BLOB_NAME = 'raw/demolitions/demolitions.csv' 
-
-    # Initialize Google Cloud Storage client
     storage_client = storage.Client()
     bucket = storage_client.bucket(BUCKET_NAME)
 

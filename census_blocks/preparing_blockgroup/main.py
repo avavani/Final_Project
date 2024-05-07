@@ -13,7 +13,6 @@ BUCKET_NAME = os.getenv('DATA_LAKE_BUCKET')
 DOWNLOAD_PREFIX = 'raw/acs_data/'
 UPLOAD_PREFIX = 'prepared/acs_data/'
 
-# Initialize Google Cloud Storage client
 storage_client = storage.Client()
 
 @functions_framework.http
@@ -28,12 +27,6 @@ def prepare_census_data(request):
         blob.download_to_filename(str(local_path))
         logging.info(f'Downloaded {file_path} to {local_path}')
         return local_path
-
-    def rename_columns(df):
-        column_mapping = {
-            # Your column mappings here
-        }
-        return df.rename(columns=column_mapping)
 
     def save_to_jsonl(df, year):
         jsonl_file_path = pathlib.Path(f'/tmp/philly{year}.jsonl')

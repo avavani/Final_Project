@@ -3,19 +3,15 @@ import os
 from google.cloud import bigquery
 import functions_framework
 
-# Load environment variables from .env file
 load_dotenv()
 
 @functions_framework.http
 def load_demo_data(request):
-    # Define dataset and bucket names
     dataset_name = os.getenv('DATASET_NAME')
     bucket_name = os.getenv('DATA_LAKE_BUCKET')
 
-    # Create BigQuery client
     bigquery_client = bigquery.Client()
 
-    # Define blob name and table name
     prepared_blobname = 'prepared/demolitions/demolitions.jsonl'
     tablename = 'demos'
     table_uri = f'gs://{bucket_name}/{prepared_blobname}'
@@ -63,11 +59,9 @@ def load_demo_data(request):
     )
     '''.format(dataset_name, tablename)
 
-    # Execute table creation query
     job = bigquery_client.query(create_table_query)
-    job.result()  # Wait for the job to complete
+    job.result() 
 
-    # Load data into the table
     job_config = bigquery.LoadJobConfig(
         source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON
     )
@@ -76,7 +70,7 @@ def load_demo_data(request):
         f'{dataset_name}.{tablename}',
         job_config=job_config
     )
-    load_job.result()  # Wait for the job to complete
+    load_job.result() 
 
     if load_job.errors:
         return f'Errors occurred: {load_job.errors}'

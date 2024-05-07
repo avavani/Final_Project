@@ -25,9 +25,9 @@ storage_client = storage.Client()
 @functions_framework.http
 def extract_block_group(request):
     try:
-        # Send a request to download the data
+        
         response = requests.get(URL)
-        response.raise_for_status()  # This will raise an exception for HTTP errors
+        response.raise_for_status()  
         print(f'Received {response.status_code} response...')
 
         # Handling the zip file in memory
@@ -38,7 +38,7 @@ def extract_block_group(request):
         # Upload files to Google Cloud Storage
         bucket = storage_client.bucket(BUCKET_NAME)
         for file_path in EXTRACT_PATH.iterdir():
-            if file_path.is_file():  # Make sure it's a file, not a directory
+            if file_path.is_file():  
                 blob_name = f'raw/blockgroup/{file_path.name}'
                 blob = bucket.blob(blob_name)
                 blob.upload_from_filename(str(file_path))

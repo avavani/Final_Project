@@ -4,7 +4,6 @@ from google.cloud import bigquery
 import pathlib
 import functions_framework
 
-# Load environment variables from .env file
 load_dotenv()
 
 # Set up paths
@@ -12,22 +11,18 @@ SCRIPT_DIR = pathlib.Path(__file__).parent
 RAW_DATA_DIR = SCRIPT_DIR / 'raw_data'
 PREPARED_DATA_DIR = SCRIPT_DIR / 'prepared_data'
 
-# Define function to load census data into BigQuery
+
 @functions_framework.http
 def load_census_data(request):
 
-    # Define dataset name
     dataset_name = os.getenv('DATASET_NAME')
 
-    # Create BigQuery client
     bigquery_client = bigquery.Client()
 
-    # Define blob name and table name
     prepared_blobname = f'prepared/acs_data/2021/philly.jsonl'
     tablename = f'acs2021'
     table_uri = f'gs://{os.getenv("DATA_LAKE_BUCKET")}/{prepared_blobname}'
 
-    # Create table creation query
     create_table_query = f'''
         CREATE OR REPLACE EXTERNAL TABLE {dataset_name}.{tablename} (
             `Total_Population` STRING,
@@ -62,9 +57,9 @@ def load_census_data(request):
         )
         '''
 
-    # Execute table creation query
+    
     job = bigquery_client.query(create_table_query)
-    job.result()  # Wait for the job to complete
+    job.result()  
 
     print(f'Loaded {table_uri} into {dataset_name}.{tablename}')
 

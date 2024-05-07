@@ -6,15 +6,15 @@ import functions_framework
 import logging
 from google.cloud import storage
 
-# Load environment variables from .env file
+
 load_dotenv()
 
-# Constants
+
 BUCKET_NAME = os.getenv('DATA_LAKE_BUCKET')
 DOWNLOAD_PREFIX = 'raw/acs_data/'
 UPLOAD_PREFIX = 'prepared/acs_data/'
 
-# Initialize Google Cloud Storage client
+
 storage_client = storage.Client()
 
 @functions_framework.http

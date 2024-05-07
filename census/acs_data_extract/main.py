@@ -43,7 +43,7 @@ def extract_census_data(request):
         blob.upload_from_filename(filename)
         print(f'Uploaded {filename} to {bucket_name}')
 
-    # Define years
+    
     years = [2021]
 
     # Extract data for each year
@@ -58,3 +58,6 @@ def extract_census_data(request):
             return "Data extraction and upload completed successfully.", 200
         except Exception as e:
             return f"An error occurred: {str(e)}", 500
+        
+
+       git rm --cached <Users/avani/Documents/cloud_comp/final_project/census_blocks/preparing_blockgroup/prepared/blockgroup/blockgroups.jsonl>
