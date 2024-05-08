@@ -1,4 +1,7 @@
 # MUSA 5090 Spring 2024 Final Project: Demolitions in Philadelphia
+
+Slides: https://docs.google.com/presentation/d/1q9uNfhpkKNvTyr8I3gUdNr0a2W7AQ4nJ6-SCohFPnaw/edit?usp=sharing
+
 In this project, I was interested in trying out some of the cloud functions that we learned in class. My goal was more to increase my familiarity with the interfaces of Google Cloud Storage, Cloud Function, Big Query, and Carto. To this end, I worked to create an ELT pipeline for 3 datasets. These scripts were deployed on Google Cloud Functions and a workflow was set in order to initiate the trigger of every 6 months. Finally, the datasets that were loaded were manipulated in BigQuery and modeled to create prediction for demolitions in Philadelphia. 
 
 ## About the Datasets
