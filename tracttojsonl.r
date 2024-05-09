@@ -10,7 +10,7 @@ library(geojsonsf)
 # Convert to GeoJSON
 geojson_data <- sf_geojson(tracts)
 
-# Split GeoJSON into features (assuming the GeoJSON structure is a collection of features)
+# Split GeoJSON into features
 features <- strsplit(gsub(pattern = "\\},\\{", replacement = "}\\n{", x = geojson_data), split = "\n")[[1]]
 
 # Write features to a JSONL file
